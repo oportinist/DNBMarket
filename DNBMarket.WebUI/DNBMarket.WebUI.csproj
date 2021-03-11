@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DNBMarket.BusinessLogic\DNBMarket.BusinessLogic.csproj" />
+    <ProjectReference Include="..\DNBMarket.DataAccess\DNBMarket.DataAccess.csproj" />
+    <ProjectReference Include="..\DNBMarket.Entities\DNBMarket.Entities.csproj" />
+    <ProjectReference Include="..\DNBMarket.Models\DNBMarket.Models.csproj" />
+  </ItemGroup>
+
+</Project>

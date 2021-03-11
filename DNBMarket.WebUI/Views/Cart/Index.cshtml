@@ -1,0 +1,91 @@
+﻿@model IDataResult<CartModel>
+@{
+    ViewData["Title"] = "Index";
+}
+
+@if (Model.Data != null && string.IsNullOrEmpty(Model.Message))
+{
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Sepette Yer Alan Ürünler</h3>
+
+            <div class="card-tools">
+                <div class="input-group input-group-sm" style="width: 150px;">
+                    Sepet Kodu : @Model.Data.Cart.CartKey
+                </div>
+            </div>
+        </div>
+        <!-- /.card-header -->
+        <form action="/Cart/Pay" method="post">
+            <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                    <thead>
+                        <tr>
+                            <th>Ürün Adı</th>
+                            <th>Fiyatı</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Data.CartProducts)
+                        {
+                            <tr>
+                                <td>@item.Product.Name</td>
+                                <td>@item.Product.UnitPrice</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </form>
+        <!-- /.card-body -->
+        <div class="card-footer">
+            <a href="/@ControllerName/Pay/@Model.Data.Cart.Id" class="btn btn-success float-right">
+                <i class="far fa-credit-card"></i> Satın Al
+            </a>
+        </div>
+    </div>
+}
+else
+{
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Sepette Yer Alan Ürünler</h3>
+
+            <div class="card-tools">
+                <div class="input-group input-group-sm" style="width: 150px;">
+                </div>
+            </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div class="callout callout-warning">
+                <h5>Uyarı !</h5>
+                <p>Sepetinizde Ürün Bulunamadı. <a href="/Product/Index">Ürünler</a> Menüsünden Sepetinize Ürün Ekleyebilirsiniz.</p>
+            </div>
+        </div>
+
+    </div>
+}
+
+@if (!string.IsNullOrWhiteSpace(TempData["PayMessage"] as string))
+{
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title"></h3>
+
+            <div class="card-tools">
+                <div class="input-group input-group-sm" style="width: 150px;">
+                </div>
+            </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <div class="callout callout-warning"> 
+                <p>@TempData["PayMessage"]</p>
+            </div>
+        </div>
+
+    </div>
+}
+
+
